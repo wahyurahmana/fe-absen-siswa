@@ -1,8 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from '../components/Dashboard.vue'
-import AbsensiSiswa from '../components/AbsensiSiswa.vue'
-import DataGuru from '../components/DataGuru.vue'
-import DataSiswa from '../components/DataSiswa.vue'
+import Dashboard from '../views/Dashboard.vue'
+import AbsensiSiswa from '../views/AbsensiSiswa.vue'
+import DataGuru from '../views/DataGuru.vue'
+import DataSiswa from '../views/DataSiswa.vue'
+import Login from '../views/Login.vue'
+import axios from 'axios'
+
+const checkToken = async () => {
+  try {
+   const result = await axios({
+      url : 'http://localhost:3000/user/check-token',
+      method : 'POST',
+      data : {
+        token : localStorage.getItem('access_token')
+      }
+    }) 
+    return result.data
+  } catch (error) {
+    return error
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +27,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Dashboard
+      component: Dashboard,
+      beforeEnter : async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if(authToken.username){
+            next()
+          }else{
+            next({name : 'Login'})  
+          }
+        } catch (error) {
+          next({name : 'Login'})
+        }
+      }
     },
     {
       path: '/absensi-siswa',
@@ -26,16 +55,26 @@ const router = createRouter({
       path: '/data-siswa',
       name: 'DataSiswa',
       component: DataSiswa
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      beforeEnter : async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if(!authToken.username){
+            next()
+          }else{
+            next({name : 'home'})  
+          }
+        } catch (error) {
+          next({name : 'Login'})
+        }
+      }
     }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
   ]
 })
+
 
 export default router

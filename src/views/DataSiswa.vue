@@ -1,7 +1,18 @@
 <script>
+  import Navbar from '../components/Navbar.vue';
+  import ControlSidebar from '../components/ControlSidebar.vue'
+  import Footer from '../components/Footer.vue'
+  export default {
+    components: {
+      Navbar,
+      ControlSidebar,
+      Footer
+    }
+  }
 </script>
 
 <template>
+  <Navbar />
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -90,4 +101,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <ControlSidebar />
+  <Footer />
 </template>

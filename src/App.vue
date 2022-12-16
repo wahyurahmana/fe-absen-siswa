@@ -1,15 +1,8 @@
 <script>
-import Home from './views/Home.vue'
-
-export default {
-  components : {
-    Home
-  }
-}
 </script>
 
 <template>
   <div class="wrapper">
-    <Home />
+    <router-view></router-view>
   </div>
 </template>

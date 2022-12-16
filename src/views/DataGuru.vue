@@ -1,7 +1,18 @@
 <script>
+  import Navbar from '../components/Navbar.vue';
+  import ControlSidebar from '../components/ControlSidebar.vue'
+  import Footer from '../components/Footer.vue'
+  export default {
+    components: {
+      Navbar,
+      ControlSidebar,
+      Footer
+    }
+  }
 </script>
 
 <template>
+  <Navbar />
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -9,7 +20,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Absensi Siswa</h1>
+            <h1>Data Guru</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,9 +33,8 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                  Tambah Siswa
-                </button>
+                <h3 class="card-title">Responsive Hover Table</h3>
+
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -91,25 +101,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
+  <ControlSidebar />
+  <Footer />
 </template>
