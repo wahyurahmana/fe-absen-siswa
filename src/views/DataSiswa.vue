@@ -34,7 +34,7 @@
             <div class="card">
               <div class="card-header">
                 
-                <button type="button" class="btn btn-outline-primary" onclick="location.href='../tambah-data-siswa'">Tambah Siswa</button>
+                <router-link to="/tambah-data-siswa"><button type="button" class="btn btn-outline-primary">Tambah Siswa</button></router-link>
                 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">

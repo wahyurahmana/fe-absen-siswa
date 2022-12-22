@@ -47,26 +47,86 @@ const router = createRouter({
             path: "/absensi-siswa",
             name: "AbsensiSiswa",
             component: AbsensiSiswa,
+            beforeEnter : async (to, from, next) => {
+                try {
+                  const authToken = await checkToken()
+                  if(authToken.username){
+                    next()
+                  }else{
+                    next({name : 'Login'})
+                  }
+                } catch (error) {
+                  next({name : 'Login'})
+                }
+              }
         },
         {
             path: "/data-guru",
             name: "DataGuru",
             component: DataGuru,
+            beforeEnter : async (to, from, next) => {
+                try {
+                  const authToken = await checkToken()
+                  if(authToken.username){
+                    next()
+                  }else{
+                    next({name : 'Login'})
+                  }
+                } catch (error) {
+                  next({name : 'Login'})
+                }
+              }
         },
         {
             path: "/data-siswa",
             name: "DataSiswa",
             component: DataSiswa,
+            // beforeEnter : async (to, from, next) => {
+            //     try {
+            //       const authToken = await checkToken()
+            //       if(authToken.username){
+            //         next()
+            //       }else{
+            //         next({name : 'Login'})
+            //       }
+            //     } catch (error) {
+            //       next({name : 'Login'})
+            //     }
+            //   }
         },
         {
             path: "/tambah-data-siswa",
             name: "TambahDataSiswa",
             component: TambahDataSiswa,
+            // beforeEnter : async (to, from, next) => {
+            //     try {
+            //       const authToken = await checkToken()
+            //       if(authToken.username){
+            //         next()
+            //       }else{
+            //         next({name : 'Login'})
+            //       }
+            //     } catch (error) {
+            //       next({name : 'Login'})
+            //     }
+            //   }
         },
         {
             path: "/tambah-data-guru",
             name: "TambahDataGuru",
             component: TambahDataGuru,
+            beforeEnter : async (to, from, next) => {
+              try {
+                const authToken = await checkToken()
+                if(authToken.username){
+                  next()
+                }else{
+                  next({name : 'Login'})
+                }
+              } catch (error) {
+                next({name : 'Login'})
+              }
+            }
         },
         {
             path: "/login",
