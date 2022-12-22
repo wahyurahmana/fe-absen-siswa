@@ -34,7 +34,7 @@
             <div class="card">
               <div class="card-header">
                 
-                <button type="button" class="btn btn-outline-primary" onclick="location.href='../tambah-data-Guru'">Tambah Guru</button>
+                <router-link to="/tambah-data-guru"><button type="button" class="btn btn-outline-primary">Tambah Guru</button></router-link>
                 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
