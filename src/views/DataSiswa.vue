@@ -74,6 +74,11 @@
                       <td>Sumbawa</td>
                       <td>081000111222</td>
                       <td>082111222333</td>
+                      <td>
+                        <a class="btn btn-app">
+                        <i class="fas fa-edit"></i> Edit
+                        </a>
+                      </td>
                     </tr>
                     <tr>
                       <td>2</td>

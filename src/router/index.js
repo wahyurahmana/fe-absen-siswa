@@ -8,20 +8,20 @@ import TambahDataSiswa from "../views/TambahDataSiswa.vue"
 import TambahDataGuru from "../views/TambahDataGuru.vue"
 import axios from "axios";
 
-// const checkToken = async () => {
-//   try {
-//    const result = await axios({
-//       url : 'http://localhost:3000/user/check-token',
-//       method : 'POST',
-//       data : {
-//         token : localStorage.getItem('access_token')
-//       }
-//     })
-//     return result.data
-//   } catch (error) {
-//     return error
-//   }
-// }
+const checkToken = async () => {
+  try {
+   const result = await axios({
+      url : 'http://localhost:3000/user/check-token',
+      method : 'POST',
+      data : {
+        token : localStorage.getItem('access_token')
+      }
+    })
+    return result.data
+  } catch (error) {
+    return error
+  }
+}
 
 const router = createRouter({
     history: createWebHistory(
@@ -30,18 +30,18 @@ const router = createRouter({
             path: "/",
             name: "home",
             component: Dashboard,
-            // beforeEnter : async (to, from, next) => {
-            //   try {
-            //     const authToken = await checkToken()
-            //     if(authToken.username){
-            //       next()
-            //     }else{
-            //       next({name : 'Login'})
-            //     }
-            //   } catch (error) {
-            //     next({name : 'Login'})
-            //   }
-            // }
+            beforeEnter : async (to, from, next) => {
+              try {
+                const authToken = await checkToken()
+                if(authToken.username){
+                  next()
+                }else{
+                  next({name : 'Login'})
+                }
+              } catch (error) {
+                next({name : 'Login'})
+              }
+            }
         },
         {
             path: "/absensi-siswa",
@@ -72,18 +72,18 @@ const router = createRouter({
             path: "/login",
             name: "Login",
             component: Login,
-            // beforeEnter : async (to, from, next) => {
-            //   try {
-            //     const authToken = await checkToken()
-            //     if(!authToken.username){
-            //       next()
-            //     }else{
-            //       next({name : 'home'})
-            //     }
-            //   } catch (error) {
-            //     next({name : 'Login'})
-            //   }
-            // }
+            beforeEnter : async (to, from, next) => {
+              try {
+                const authToken = await checkToken()
+                if(!authToken.username){
+                  next()
+                }else{
+                  next({name : 'home'})
+                }
+              } catch (error) {
+                next({name : 'Login'})
+              }
+            }
         },
     ],
 });
