@@ -33,8 +33,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Responsive Hover Table</h3>
-
+                
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='../tambah-data-siswa'">Tambah Siswa</button>
+                
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -52,41 +53,52 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
+                      <th>NO</th>
+                      <th>NISN</th>
+                      <th>Nama Lengkap</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Tempat Tanggal Lahir</th>
+                      <th>Alamat</th>
+                      <th>No. HP Siswa</th>
+                      <th>No. HP Orangtua/Wali</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>1</td>
+                      <td>2227138</td>
+                      <td>A RIAN RANA PRATAMA</td>
+                      <td>Laki-laki</td>
+                      <td>Sumbawa, 01-01-2001</td>
+                      <td>Sumbawa</td>
+                      <td>081000111222</td>
+                      <td>082111222333</td>
+                      <td>
+                        <a class="btn btn-app">
+                        <i class="fas fa-edit"></i> Edit
+                        </a>
+                      </td>
                     </tr>
                     <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>2</td>
+                      <td>2227139</td>
+                      <td>ADJIE RADIMAS PRATAMA</td>
+                      <td>Laki-laki</td>
+                      <td>Sumbawa, 02-02-2002</td>
+                      <td>Sumbawa</td>
+                      <td>081000111222</td>
+                      <td>082111222333</td>
                     </tr>
                     <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>3</td>
+                      <td>2227140</td>
+                      <td>AFWAN TSULATSA RIJALULHAQ</td>
+                      <td>Laki-laki</td>
+                      <td>Sumbawa, 03-03-2003</td>
+                      <td>Sumbawa</td>
+                      <td>081000111222</td>
+                      <td>082111222333</td>
                     </tr>
                   </tbody>
                 </table>

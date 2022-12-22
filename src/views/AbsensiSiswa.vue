@@ -1,14 +1,15 @@
 <script>
-  import Navbar from '../components/Navbar.vue';
-  import ControlSidebar from '../components/ControlSidebar.vue'
-  import Footer from '../components/Footer.vue'
+  import Navbar from "../components/Navbar.vue";
+  import ControlSidebar from "../components/ControlSidebar.vue";
+  import Footer from "../components/Footer.vue";
+  import "../assets/css/btnabsen.css";
   export default {
     components: {
       Navbar,
       ControlSidebar,
-      Footer
-    }
-  }
+      Footer,
+    },
+  };
 </script>
 
 <template>
@@ -23,7 +24,8 @@
             <h1>Absensi Siswa</h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
@@ -33,12 +35,11 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                  Tambah Siswa
-                </button>
+                <!-- <h3 class="card-title">Absensi Siswa</h3> -->
+
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                  <div class="input-group input-group-sm" style="width: 150px">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search" />
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default">
@@ -50,44 +51,96 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover text-nowrap justify-content-center">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
+                      <th>NO</th>
+                      <th>NISN</th>
+                      <th>Nama</th>
                       <th>Status</th>
-                      <th>Reason</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>1</td>
+                      <td>2227138</td>
+                      <td>A RIAN RANA PRATAMA</td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="button-hadir" role="button">
+                            Hadir
+                          </button>
+                          <button class="button-ijin" role="button">
+                            Ijin
+                          </button>
+                          <button class="button-sakit" role="button">
+                            Sakit
+                          </button>
+                          <button class="button-alpa" role="button">
+                            Alpa
+                          </button>
+                          <button class="button-bolos" role="button">
+                            Bolos
+                          </button>
+                          <button class="button-telat" role="button">
+                            Telat
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>2</td>
+                      <td>2227139</td>
+                      <td>ADJIE RADIMAS PRATAMA</td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="button-hadir" role="button">
+                            Hadir
+                          </button>
+                          <button class="button-ijin" role="button">
+                            Ijin
+                          </button>
+                          <button class="button-sakit" role="button">
+                            Sakit
+                          </button>
+                          <button class="button-alpa" role="button">
+                            Alpa
+                          </button>
+                          <button class="button-bolos" role="button">
+                            Bolos
+                          </button>
+                          <button class="button-telat" role="button">
+                            Telat
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>3</td>
+                      <td>2227140</td>
+                      <td>AFWAN TSULATSA RIJALULHAQ</td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="button-hadir" role="button">
+                            Hadir
+                          </button>
+                          <button class="button-ijin" role="button">
+                            Ijin
+                          </button>
+                          <button class="button-sakit" role="button">
+                            Sakit
+                          </button>
+                          <button class="button-alpa" role="button">
+                            Alpa
+                          </button>
+                          <button class="button-bolos" role="button">
+                            Bolos
+                          </button>
+                          <button class="button-telat" role="button">
+                            Telat
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -97,32 +150,12 @@
             <!-- /.card -->
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
   <ControlSidebar />
   <Footer />
 </template>
