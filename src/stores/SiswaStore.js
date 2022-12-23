@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 export const SiswaStore = defineStore('SiswaStore', {
   state: () => {
@@ -53,6 +54,7 @@ export const SiswaStore = defineStore('SiswaStore', {
             no_hp_ortu : `62${this.no_hp_ortu}`
           }
         })
+        Swal.fire('Data Siswa Berhasil Ditambahkan!')
         this.loading = false
         this.getAllDataSiswa()
         this.router.push({name : 'DataSiswa'})
@@ -63,18 +65,35 @@ export const SiswaStore = defineStore('SiswaStore', {
       }
     },
     async deleteSiswa(id) {
-      try {
-        const result = await axios({
-          url :'http://localhost:3000/siswa/'+id,
-          method : 'DELETE',
-          headers : {
-            access_token : localStorage.getItem('access_token')
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const result = await axios({
+              url :'http://localhost:3000/siswa/'+id,
+              method : 'DELETE',
+              headers : {
+                access_token : localStorage.getItem('access_token')
+              }
+            })
+            this.getAllDataSiswa()
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          } catch (error) {
+            console.log(error);
           }
-        })
-        this.getAllDataSiswa()
-      } catch (error) {
-        console.log(error);
-      }
+        }
+      })
     },
     async absensiSiswa(id_siswa, status){
       try {
@@ -90,6 +109,7 @@ export const SiswaStore = defineStore('SiswaStore', {
             status
           }
         })
+        Swal.fire(`Berhasil Mengirim Pesan ${status} Ke WhatsApp Orang Tua!`)
         this.loading = false
         this.getAllDataSiswa()
         this.router.push({name : 'AbsensiSiswa'})

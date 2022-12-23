@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 export const GuruStore = defineStore('GuruStore', {
   state: () => {
@@ -7,7 +8,8 @@ export const GuruStore = defineStore('GuruStore', {
       data : [],
       username : "",
       nama_lengkap : "",
-      alamat : ""
+      alamat : "",
+      loading : false
     }
   },
   actions: {
@@ -15,22 +17,22 @@ export const GuruStore = defineStore('GuruStore', {
       try {
         this.data = []
         const result = await axios({
-          // url :`${process.env.VUE_APP_SERVER_BASE_URL}guru`,
+          url :'http://localhost:3000/guru',
           method : 'GET',
           headers : {
             access_token : localStorage.getItem('access_token')
           }
         })
         this.data = result.data
-        
       } catch (error) {
         console.log(error);
       }
     },
     async addDataGuru(){
       try {
-        const result = await axios({
-          // url :`${process.env.VUE_APP_SERVER_BASE_URL}guru`,
+        this.loading = true
+        await axios({
+          url :'http://localhost:3000/guru',
           method : 'POST',
           headers : {
             access_token : localStorage.getItem('access_token')
@@ -41,10 +43,44 @@ export const GuruStore = defineStore('GuruStore', {
             alamat : this.alamat
           }
         })
-        return result.data
+        Swal.fire('Data Guru Berhasil Ditambahkan!')
+        this.loading = false
+        this.getAllDataGuru()
+        this.router.push({name : 'DataGuru'})
       } catch (error) {
         console.log(error);
       }
-    }
-  },
+    },
+    async deleteGuru(id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await axios({
+              url :'http://localhost:3000/guru/'+id,
+              method : 'DELETE',
+              headers : {
+                access_token : localStorage.getItem('access_token')
+              }
+            })
+            this.getAllDataGuru()
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      })
+    },
+  }
 })

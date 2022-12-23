@@ -1,8 +1,16 @@
 <script>
+  import { mapWritableState, mapActions } from 'pinia'
+  import {GuruStore} from '../stores/GuruStore.js'
   import Navbar from "../components/Navbar.vue";
   import ControlSidebar from "../components/ControlSidebar.vue";
   import Footer from "../components/Footer.vue";
   export default {
+    computed: {
+      ...mapWritableState(GuruStore, ['username', 'nama_lengkap', 'alamat', 'loading','error'])
+    },
+    methods : {
+      ...mapActions(GuruStore, ['addDataGuru'])
+    },
     components: {
       Navbar,
       ControlSidebar,
@@ -38,41 +46,32 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form @submit.prevent="addDataGuru">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">NIP</label>
-                    <input type="text" class="form-control" id="nisn" placeholder="Masukkan NISN" />
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Masukkan Username" v-model="username"/>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" />
+                    <label for="nama_lengkap">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" placeholder="Masukkan Nama Lengkap" v-model="nama_lengkap"/>
                   </div>
                   <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select class="custom-select">
-                          <option>Laki-laki</option>
-                          <option>Perempuan</option>
-                        </select>
-                      </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Tempat Tanggal Lahir</label>
-                    <input type="text" class="form-control" id="tempatlahir" placeholder="Masukkan Tempat Lahir" />
-                    <span><input type="date" class="form-control" id="tanggallahir" placeholder="dd-mm-yyyy" /></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat" />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">No. HP Guru</label>
-                    <input type="number" class="form-control" id="nohpGuru" placeholder="Masukkan No. HP Guru" />
+                    <label for="alamat">Alamat</label>
+                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat" v-model="alamat"/>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">
+                    <div class="spinner-border text-light" role="status" v-if="loading">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div v-else>
+                      Submit
+                    </div>
+                  </button>
                 </div>
               </form>
             </div>
