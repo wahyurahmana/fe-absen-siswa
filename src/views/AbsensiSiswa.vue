@@ -1,14 +1,25 @@
 <script>
+  import { mapWritableState, mapActions } from 'pinia'
+  import {SiswaStore} from '../stores/SiswaStore.js'
   import Navbar from "../components/Navbar.vue";
   import ControlSidebar from "../components/ControlSidebar.vue";
   import Footer from "../components/Footer.vue";
   import "../assets/css/btnabsen.css";
   export default {
+    computed: {
+      ...mapWritableState(SiswaStore, ['data'])
+    },
+    methods : {
+      ...mapActions(SiswaStore, ['getAllDataSiswa', 'absensiSiswa'])
+    },
     components: {
       Navbar,
       ControlSidebar,
       Footer,
     },
+    mounted() {
+      this.getAllDataSiswa()
+    }
   };
 </script>
 
@@ -61,82 +72,28 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>2227138</td>
-                      <td>A RIAN RANA PRATAMA</td>
+                    <tr v-for="(item, i) in data" :key="i">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{item.nisn}}</td>
+                      <td>{{item.nama_lengkap}}</td>
                       <td>
                         <div class="btn-group">
-                          <button class="button-hadir" role="button">
+                          <button class="button-hadir" role="button" @click="() => absensiSiswa(item.id, 'hadir')">
                             Hadir
                           </button>
-                          <button class="button-ijin" role="button">
+                          <button class="button-ijin" role="button" @click="() => absensiSiswa(item.id, 'ijin')">
                             Ijin
                           </button>
-                          <button class="button-sakit" role="button">
+                          <button class="button-sakit" role="button" @click="() => absensiSiswa(item.id, 'sakit')">
                             Sakit
                           </button>
-                          <button class="button-alpa" role="button">
+                          <button class="button-alpa" role="button" @click="() => absensiSiswa(item.id, 'alpa')">
                             Alpa
                           </button>
-                          <button class="button-bolos" role="button">
+                          <button class="button-bolos" role="button" @click="() => absensiSiswa(item.id, 'bolos')">
                             Bolos
                           </button>
-                          <button class="button-telat" role="button">
-                            Telat
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>2227139</td>
-                      <td>ADJIE RADIMAS PRATAMA</td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="button-hadir" role="button">
-                            Hadir
-                          </button>
-                          <button class="button-ijin" role="button">
-                            Ijin
-                          </button>
-                          <button class="button-sakit" role="button">
-                            Sakit
-                          </button>
-                          <button class="button-alpa" role="button">
-                            Alpa
-                          </button>
-                          <button class="button-bolos" role="button">
-                            Bolos
-                          </button>
-                          <button class="button-telat" role="button">
-                            Telat
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>2227140</td>
-                      <td>AFWAN TSULATSA RIJALULHAQ</td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="button-hadir" role="button">
-                            Hadir
-                          </button>
-                          <button class="button-ijin" role="button">
-                            Ijin
-                          </button>
-                          <button class="button-sakit" role="button">
-                            Sakit
-                          </button>
-                          <button class="button-alpa" role="button">
-                            Alpa
-                          </button>
-                          <button class="button-bolos" role="button">
-                            Bolos
-                          </button>
-                          <button class="button-telat" role="button">
+                          <button class="button-telat" role="button" @click="() => absensiSiswa(item.id, 'telat')">
                             Telat
                           </button>
                         </div>

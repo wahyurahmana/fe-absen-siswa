@@ -1,12 +1,23 @@
 <script>
+  import { mapWritableState, mapActions } from 'pinia'
+  import {SiswaStore} from '../stores/SiswaStore.js'
   import Navbar from '../components/Navbar.vue';
   import ControlSidebar from '../components/ControlSidebar.vue'
   import Footer from '../components/Footer.vue'
   export default {
+    computed: {
+      ...mapWritableState(SiswaStore, ['data'])
+    },
+    methods : {
+      ...mapActions(SiswaStore, ['getAllDataSiswa', 'deleteSiswa'])
+    },
     components: {
       Navbar,
       ControlSidebar,
       Footer
+    },
+    mounted() {
+      this.getAllDataSiswa()
     }
   }
 </script>
@@ -65,40 +76,20 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>2227138</td>
-                      <td>A RIAN RANA PRATAMA</td>
-                      <td>Laki-laki</td>
-                      <td>Sumbawa, 01-01-2001</td>
-                      <td>Sumbawa</td>
-                      <td>081000111222</td>
-                      <td>082111222333</td>
+                    <tr v-for="(item, i) in data" :key="i">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ item.nisn }}</td>
+                      <td>{{ item.nama_lengkap }}</td>
+                      <td>{{ item.jenis_kelamin }}</td>
+                      <td>{{ item.tempat_lahir }}, {{ item.ttl }}</td>
+                      <td>{{ item.alamat }}</td>
+                      <td>{{ item.no_hp_siswa }}</td>
+                      <td>{{ item.no_hp_ortu }}</td>
                       <td>
-                        <a class="btn btn-app">
-                        <i class="fas fa-edit"></i> Edit
-                        </a>
+                        <button type="button" class="btn btn-primary btn-sm mr-2">Detail</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-2">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" @click="() => deleteSiswa(item.id)">Hapus</button>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>2227139</td>
-                      <td>ADJIE RADIMAS PRATAMA</td>
-                      <td>Laki-laki</td>
-                      <td>Sumbawa, 02-02-2002</td>
-                      <td>Sumbawa</td>
-                      <td>081000111222</td>
-                      <td>082111222333</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>2227140</td>
-                      <td>AFWAN TSULATSA RIJALULHAQ</td>
-                      <td>Laki-laki</td>
-                      <td>Sumbawa, 03-03-2003</td>
-                      <td>Sumbawa</td>
-                      <td>081000111222</td>
-                      <td>082111222333</td>
                     </tr>
                   </tbody>
                 </table>

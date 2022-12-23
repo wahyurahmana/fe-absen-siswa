@@ -22,14 +22,13 @@ export const SiswaStore = defineStore('SiswaStore', {
       try {
         this.data = []
         const result = await axios({
-          // url :`${process.env.VUE_APP_SERVER_BASE_URL}guru`,
+          url :'http://localhost:3000/siswa',
           method : 'GET',
           headers : {
             access_token : localStorage.getItem('access_token')
           }
         })
         this.data = result.data
-        
       } catch (error) {
         console.log(error);
       }
@@ -55,12 +54,50 @@ export const SiswaStore = defineStore('SiswaStore', {
           }
         })
         this.loading = false
+        this.getAllDataSiswa()
         this.router.push({name : 'DataSiswa'})
       } catch (error) {
         this.loading = false
         this.error = error.response.data.message
         console.log(error);
       }
-    }
+    },
+    async deleteSiswa(id) {
+      try {
+        const result = await axios({
+          url :'http://localhost:3000/siswa/'+id,
+          method : 'DELETE',
+          headers : {
+            access_token : localStorage.getItem('access_token')
+          }
+        })
+        this.getAllDataSiswa()
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async absensiSiswa(id_siswa, status){
+      try {
+        this.loading = true
+        await axios({
+          url :'http://localhost:3000/siswa/absensi',
+          method : 'POST',
+          headers : {
+            access_token : localStorage.getItem('access_token')
+          },
+          data : {
+            id_siswa,
+            status
+          }
+        })
+        this.loading = false
+        this.getAllDataSiswa()
+        this.router.push({name : 'AbsensiSiswa'})
+      } catch (error) {
+        this.loading = false
+        this.error = error.response.data.message
+        console.log(error);
+      }
+    },
   },
 })

@@ -59,7 +59,7 @@
                   <div class="form-group">
                         <label>Jenis Kelamin</label>
                         <select class="custom-select" v-model="jenis_kelamin">
-                          <option value="-" readonly>Pilih</option>
+                          <option value="" disabled>Pilih</option>
                           <option value="L">Laki-laki</option>
                           <option value="P">Perempuan</option>
                         </select>
