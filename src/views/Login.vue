@@ -23,7 +23,7 @@ export default {
         <div class="card-body login-card-body">
           <p class="login-box-msg">Silahkan Login!</p>
 
-          <form action="#" method="post" @submit.prevent="login">
+          <form @submit.prevent="login">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Username" v-model="username">
               <div class="input-group-append">
