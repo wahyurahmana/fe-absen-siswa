@@ -1,35 +1,21 @@
-# fe-absen-siswa
+# APLIKASI ABSENSI SISWA
+Aplikasi Absensi Siswa Ini Bersifat Gratis, Untuk Memudahkan Para Guru Memberi Informasi Kepada Orang Tua Murid Terkait Absensi Anaknya, Dengan Melalui Fitur Pengiriman Pesan Notifikasi WhatsApp.
 
-This template should help get you started developing with Vue 3 in Vite.
+## FITUR
+- Management Data Guru (Nama Lengkap, Alamat)
+- Management Data Siswa (nisn, nama lengkap, jenis kelamin, alamat, tempat lahir, ttl, no hp siswa, no hp ortu)
+- Management Absensi
+- Pengiriman Pesan Kepada Orang Tua Murid Melalui WhatsApp
 
-## Recommended IDE Setup
+## CARA PENGGUNAAN APLIKASI
+1. Clone/Download Aplikasi Pada Halaman Ini.
+1. Pastikan Anda Telah Menginstall ```(NodeJs)```
+1. Jalankan Aplikasi Backend/BE Absensi Siswa [BE Absens Siswa](https://github.com/wahyurahmana/be-absen-siswa)
+1. Arahkan Terminal Pada Folder Aplikasi
+1. Install Dependencies Yang Dibutuhkan ```(npm i)```
+1. Jalankan Aplikasi ```(npm run dev)```
+>note : Silahkan Download Dan Jalankan ```node app.js``` Fitur Send Message WhatsApp Pada Link Berikut [SEND WA](https://github.com/wahyurahmana/send-message-wa-api)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## INFO
+> Apabila Ingin Merubah Atau Custom Bentuk Data Sesuai Keinginan, Anda Bisa Menghubungi Kami di :
+> ```HP/WA : 082236464656```
