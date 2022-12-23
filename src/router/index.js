@@ -47,35 +47,35 @@ const router = createRouter({
             path: "/absensi-siswa",
             name: "AbsensiSiswa",
             component: AbsensiSiswa,
-            beforeEnter : async (to, from, next) => {
-                try {
-                  const authToken = await checkToken()
-                  if(authToken.username){
-                    next()
-                  }else{
-                    next({name : 'Login'})
-                  }
-                } catch (error) {
-                  next({name : 'Login'})
-                }
-              }
+            // beforeEnter : async (to, from, next) => {
+            //     try {
+            //       const authToken = await checkToken()
+            //       if(authToken.username){
+            //         next()
+            //       }else{
+            //         next({name : 'Login'})
+            //       }
+            //     } catch (error) {
+            //       next({name : 'Login'})
+            //     }
+            //   }
         },
         {
             path: "/data-guru",
             name: "DataGuru",
             component: DataGuru,
-            beforeEnter : async (to, from, next) => {
-                try {
-                  const authToken = await checkToken()
-                  if(authToken.username){
-                    next()
-                  }else{
-                    next({name : 'Login'})
-                  }
-                } catch (error) {
-                  next({name : 'Login'})
-                }
-              }
+            // beforeEnter : async (to, from, next) => {
+            //     try {
+            //       const authToken = await checkToken()
+            //       if(authToken.username){
+            //         next()
+            //       }else{
+            //         next({name : 'Login'})
+            //       }
+            //     } catch (error) {
+            //       next({name : 'Login'})
+            //     }
+            //   }
         },
         {
             path: "/data-siswa",
