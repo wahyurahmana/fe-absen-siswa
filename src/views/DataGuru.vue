@@ -9,7 +9,15 @@
       ...mapWritableState(GuruStore, ['data'])
     },
     methods : {
-      ...mapActions(GuruStore, ['getAllDataGuru', 'deleteGuru'])
+      ...mapActions(GuruStore, ['getAllDataGuru', 'deleteGuru']),
+      goToEdit(idGuru){
+        this.$router.push({
+          name : 'EditDataGuru', 
+          params : {
+            idGuru
+          }
+        })
+      }
     },
     components: {
       Navbar,
@@ -77,7 +85,7 @@
                       <td>{{item.alamat}}</td>
                       <td>
                         <button type="button" class="btn btn-primary btn-sm mr-2">Detail</button>
-                        <button type="button" class="btn btn-secondary btn-sm mr-2">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" @click="() => goToEdit(item.id)">Edit</button>
                         <button type="button" class="btn btn-danger btn-sm" @click="() => deleteGuru(item.id)">Hapus</button>
                       </td>
                     </tr>

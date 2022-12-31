@@ -6,16 +6,22 @@
   import Footer from "../components/Footer.vue";
   export default {
     computed: {
-      ...mapWritableState(GuruStore, ['username', 'nama_lengkap', 'alamat', 'loading','error'])
+      ...mapWritableState(GuruStore, ['username', 'nama_lengkap', 'alamat', 'loading','error', 'detailGuru'])
     },
     methods : {
-      ...mapActions(GuruStore, ['addDataGuru'])
+      ...mapActions(GuruStore, ['getDetailGuru', 'editDataGuru']),
+      handleEditDataGuru(){
+        this.editDataGuru(this.$route.params.idGuru)
+      }
     },
     components: {
       Navbar,
       ControlSidebar,
       Footer,
     },
+    mounted(){
+      this.getDetailGuru(this.$route.params.idGuru)
+    }
   };
 </script>
 
@@ -33,7 +39,7 @@
             </button>
           </router-link>
           <div class="col-sm-6">
-            <h1>Tambah Data Guru</h1>
+            <h1>Edit Data Guru</h1>
           </div>
         </div>
       </div>
@@ -48,19 +54,15 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-              <form @submit.prevent="addDataGuru">
+              <form @submit.prevent="handleEditDataGuru">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Masukkan Username" v-model="username"/>
-                  </div>
-                  <div class="form-group">
                     <label for="nama_lengkap">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="nama_lengkap" placeholder="Masukkan Nama Lengkap" v-model="nama_lengkap"/>
+                    <input type="text" class="form-control" id="nama_lengkap" placeholder="Masukkan Nama Lengkap" v-model="detailGuru.nama_lengkap"/>
                   </div>
                   <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat" v-model="alamat"/>
+                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat" v-model="detailGuru.alamat"/>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -71,7 +73,7 @@
                       <span class="sr-only">Loading...</span>
                     </div>
                     <div v-else>
-                      Submit
+                      UPDATE
                     </div>
                   </button>
                 </div>

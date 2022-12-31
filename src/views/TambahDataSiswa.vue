@@ -27,9 +27,11 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <button type="button" class="btn btn-outline-primary" onclick="history.back()">
-            Kembali
-          </button>
+          <router-link to="/data-siswa">
+            <button type="button" class="btn btn-outline-primary">
+              Kembali
+            </button>
+          </router-link>
           <div class="col-sm-6">
             <h1>Tambah Data Siswa</h1>
           </div>

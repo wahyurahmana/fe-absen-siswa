@@ -81,12 +81,14 @@
           <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa fa-cube"></i>
-              <p>
-                <router-link to="/">Dashboard</router-link>
-              </p>
-            </a>
+            <router-link to="/">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fa fa-cube"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </router-link>
           </li>
           <li class="nav-item menu-open">
             <a class="nav-link">
@@ -98,26 +100,32 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p><router-link to="/data-guru">Data Guru</router-link></p>
-                </a>
+                <router-link to="/data-guru">
+                  <a class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Data Guru</p>
+                  </a>
+                </router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p><router-link to="/data-siswa">Data Siswa</router-link></p>
-                </a>
+                <router-link to="/data-siswa">
+                  <a class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Data Siswa</p>
+                  </a>
+                </router-link>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fa fa-book"></i>
-              <p>
-                <router-link to="/absensi-siswa">Absensi Siswa</router-link>
-              </p>
-            </a>
+            <router-link to="/absensi-siswa">
+              <a class="nav-link">
+                <i class="nav-icon fa fa-book"></i>
+                <p>
+                  Absensi Siswa
+                </p>
+              </a>
+            </router-link>
           </li>
         </ul>
       </nav>
