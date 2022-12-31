@@ -9,6 +9,7 @@ import DataSiswa from "../views/DataSiswa.vue";
 import Login from "../views/Login.vue";
 import TambahDataSiswa from "../views/TambahDataSiswa.vue"
 import TambahDataGuru from "../views/TambahDataGuru.vue"
+import EditDataGuru from "../views/EditDataGuru.vue"
 import axios from "axios";
 
 const checkToken = async () => {
@@ -137,6 +138,27 @@ const router = createRouter({
       path: "/tambah-data-guru",
       name: "TambahDataGuru",
       component: TambahDataGuru,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/edit-data-guru/:idGuru",
+      name: "EditDataGuru",
+      component: EditDataGuru,
       beforeEnter: async (to, from, next) => {
         try {
           const authToken = await checkToken()

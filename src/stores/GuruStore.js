@@ -9,7 +9,8 @@ export const GuruStore = defineStore('GuruStore', {
       username : "",
       nama_lengkap : "",
       alamat : "",
-      loading : false
+      loading : false,
+      detailGuru : {}
     }
   },
   actions: {
@@ -20,10 +21,24 @@ export const GuruStore = defineStore('GuruStore', {
           url :'http://localhost:3000/guru',
           method : 'GET',
           headers : {
-            access_token : localStorage.getItem('access_token')
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
           }
         })
         this.data = result.data
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getDetailGuru(id) {
+      try {
+        const result = await axios({
+          url :'http://localhost:3000/guru/'+id,
+          method : 'GET',
+          headers : {
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
+          }
+        })
+        this.detailGuru = {...result.data}
       } catch (error) {
         console.log(error);
       }
@@ -35,7 +50,7 @@ export const GuruStore = defineStore('GuruStore', {
           url :'http://localhost:3000/guru',
           method : 'POST',
           headers : {
-            access_token : localStorage.getItem('access_token')
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
           },
           data : {
             username : this.username,
@@ -67,7 +82,7 @@ export const GuruStore = defineStore('GuruStore', {
               url :'http://localhost:3000/guru/'+id,
               method : 'DELETE',
               headers : {
-                access_token : localStorage.getItem('access_token')
+                Authorization : 'Bearer '+localStorage.getItem('access_token')
               }
             })
             this.getAllDataGuru()
@@ -82,5 +97,27 @@ export const GuruStore = defineStore('GuruStore', {
         }
       })
     },
+    async editDataGuru(id){
+      try {
+        this.loading = true
+        await axios({
+          url :'http://localhost:3000/guru/'+id,
+          method : 'PUT',
+          headers : {
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
+          },
+          data : {
+            nama_lengkap : this.detailGuru.nama_lengkap,
+            alamat : this.detailGuru.alamat
+          }
+        })
+        Swal.fire('Data Guru Berhasil Di Edit')
+        this.loading = false
+        this.getAllDataGuru()
+        this.router.push({name : 'DataGuru'})
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 })

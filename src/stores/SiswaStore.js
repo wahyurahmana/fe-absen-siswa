@@ -26,7 +26,7 @@ export const SiswaStore = defineStore('SiswaStore', {
           url :'http://localhost:3000/siswa',
           method : 'GET',
           headers : {
-            access_token : localStorage.getItem('access_token')
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
           }
         })
         this.data = result.data
@@ -41,7 +41,7 @@ export const SiswaStore = defineStore('SiswaStore', {
           url :'http://localhost:3000/siswa',
           method : 'POST',
           headers : {
-            access_token : localStorage.getItem('access_token')
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
           },
           data : {
             nisn : this.nisn,
@@ -80,7 +80,7 @@ export const SiswaStore = defineStore('SiswaStore', {
               url :'http://localhost:3000/siswa/'+id,
               method : 'DELETE',
               headers : {
-                access_token : localStorage.getItem('access_token')
+                Authorization : 'Bearer '+localStorage.getItem('access_token')
               }
             })
             this.getAllDataSiswa()
@@ -102,7 +102,7 @@ export const SiswaStore = defineStore('SiswaStore', {
           url :'http://localhost:3000/siswa/absensi',
           method : 'POST',
           headers : {
-            access_token : localStorage.getItem('access_token')
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
           },
           data : {
             id_siswa,
