@@ -1,0 +1,147 @@
+.button-hadir {
+    display: flex;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: green;
+    background-origin: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-hadir:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(214, 214, 214, 0.205), 0px 0px 0px 1.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-ijin {
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: orangered;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-ijin:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(54, 122, 246, 0.25), 0px 0px 0px 1.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-sakit {
+    display: flex;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: dodgerblue;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-sakit:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(54, 122, 246, 0.25), 0px 0px 0px 1.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-alpa {
+    display: flex;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: gold;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-alpa:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(54, 122, 246, 0.25), 0px 0px 0px 1.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-bolos {
+    display: flex;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: salmon;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-bolos:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(54, 122, 246, 0.25), 0px 0px 0px 1px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-telat {
+    display: flex;
+    text-align: center;
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: rebeccapurple;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-telat:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(54, 122, 246, 0.25), 0px 0px 0px 1px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}

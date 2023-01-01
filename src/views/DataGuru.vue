@@ -1,7 +1,37 @@
 <script>
+  import { mapWritableState, mapActions } from 'pinia'
+  import {GuruStore} from '../stores/GuruStore.js'
+  import Navbar from '../components/Navbar.vue';
+  import ControlSidebar from '../components/ControlSidebar.vue'
+  import Footer from '../components/Footer.vue'
+  export default {
+    computed: {
+      ...mapWritableState(GuruStore, ['data'])
+    },
+    methods : {
+      ...mapActions(GuruStore, ['getAllDataGuru', 'deleteGuru']),
+      goToEdit(idGuru){
+        this.$router.push({
+          name : 'EditDataGuru', 
+          params : {
+            idGuru
+          }
+        })
+      }
+    },
+    components: {
+      Navbar,
+      ControlSidebar,
+      Footer
+    },
+    mounted() {
+      this.getAllDataGuru()
+    }
+  }
 </script>
 
 <template>
+  <Navbar />
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,8 +52,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Responsive Hover Table</h3>
-
+                
+                <router-link to="/tambah-data-guru"><button type="button" class="btn btn-outline-primary">Tambah Guru</button></router-link>
+                
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -41,41 +72,22 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
+                      <th>NO</th>
+                      <th>Nama Lengkap</th>
+                      <th>alamat</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    <tr v-for="(item, i) in data" :key="i">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{item.nama_lengkap}}</td>
+                      <td>{{item.alamat}}</td>
+                      <td>
+                        <button type="button" class="btn btn-primary btn-sm mr-2">Detail</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" @click="() => goToEdit(item.id)">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" @click="() => deleteGuru(item.id)">Hapus</button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -90,4 +102,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <ControlSidebar />
+  <Footer />
 </template>

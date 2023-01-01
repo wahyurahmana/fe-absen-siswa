@@ -1,41 +1,227 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from '../components/Dashboard.vue'
-import AbsensiSiswa from '../components/AbsensiSiswa.vue'
-import DataGuru from '../components/DataGuru.vue'
-import DataSiswa from '../components/DataSiswa.vue'
+import {
+  createRouter,
+  createWebHistory
+} from "vue-router";
+import Dashboard from "../views/Dashboard.vue";
+import AbsensiSiswa from "../views/AbsensiSiswa.vue";
+import DataGuru from "../views/DataGuru.vue";
+import DataSiswa from "../views/DataSiswa.vue";
+import Login from "../views/Login.vue";
+import TambahDataSiswa from "../views/TambahDataSiswa.vue"
+import TambahDataGuru from "../views/TambahDataGuru.vue"
+import EditDataGuru from "../views/EditDataGuru.vue"
+import EditDataSiswa from "../views/EditDataSiswa.vue"
+import axios from "axios";
+
+const checkToken = async () => {
+  try {
+    const result = await axios({
+      url: 'http://localhost:3000/user/check-token',
+      method: 'POST',
+      data: {
+        token: localStorage.getItem('access_token')
+      }
+    })
+    return result.data
+  } catch (error) {
+    return error
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Dashboard
+  routes: [{
+      path: "/",
+      name: "home",
+      component: Dashboard,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
     },
     {
-      path: '/absensi-siswa',
-      name: 'AbsensiSiswa',
-      component: AbsensiSiswa
+      path: "/absensi-siswa",
+      name: "AbsensiSiswa",
+      component: AbsensiSiswa,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
     },
     {
-      path: '/data-guru',
-      name: 'DataGuru',
-      component: DataGuru
+      path: "/data-guru",
+      name: "DataGuru",
+      component: DataGuru,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
     },
     {
-      path: '/data-siswa',
-      name: 'DataSiswa',
-      component: DataSiswa
-    }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
-  ]
-})
+      path: "/data-siswa",
+      name: "DataSiswa",
+      component: DataSiswa,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/tambah-data-siswa",
+      name: "TambahDataSiswa",
+      component: TambahDataSiswa,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/edit-data-siswa/:idSiswa",
+      name: "EditDataSiswa",
+      component: EditDataSiswa,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/tambah-data-guru",
+      name: "TambahDataGuru",
+      component: TambahDataGuru,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/edit-data-guru/:idGuru",
+      name: "EditDataGuru",
+      component: EditDataGuru,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: Login,
+      beforeEnter: async (to, from, next) => {
+        try {
+          if(!localStorage.getItem('access_token')){
+            next()
+          }else{
+            const authToken = await checkToken()
+            if(!authToken.username) {
+              next()
+            }else{
+              next({name: 'home'})  
+            }
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+  ],
+});
 
-export default router
+export default router;
