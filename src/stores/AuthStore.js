@@ -18,7 +18,7 @@ export const AuthStore = defineStore('AuthStore', {
         this.loading = true
         const result = await axios({
           // url :`${process.env.VUE_APP_SERVER_BASE_URL}user/login`,
-          url : 'http://localhost:3000/user/login',
+          url : import.meta.env.VITE_BASE_URL+'user/login',
           method : 'POST',
           data : {
             username : this.username,

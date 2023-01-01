@@ -18,7 +18,7 @@ export const GuruStore = defineStore('GuruStore', {
       try {
         this.data = []
         const result = await axios({
-          url :'http://localhost:3000/guru',
+          url :import.meta.env.VITE_BASE_URL+'guru',
           method : 'GET',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -32,7 +32,7 @@ export const GuruStore = defineStore('GuruStore', {
     async getDetailGuru(id) {
       try {
         const result = await axios({
-          url :'http://localhost:3000/guru/'+id,
+          url :import.meta.env.VITE_BASE_URL+'guru/'+id,
           method : 'GET',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -47,7 +47,7 @@ export const GuruStore = defineStore('GuruStore', {
       try {
         this.loading = true
         await axios({
-          url :'http://localhost:3000/guru',
+          url :import.meta.env.VITE_BASE_URL+'guru',
           method : 'POST',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -79,7 +79,7 @@ export const GuruStore = defineStore('GuruStore', {
         if (result.isConfirmed) {
           try {
             await axios({
-              url :'http://localhost:3000/guru/'+id,
+              url :import.meta.env.VITE_BASE_URL+'guru/'+id,
               method : 'DELETE',
               headers : {
                 Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -101,7 +101,7 @@ export const GuruStore = defineStore('GuruStore', {
       try {
         this.loading = true
         await axios({
-          url :'http://localhost:3000/guru/'+id,
+          url :import.meta.env.VITE_BASE_URL+'guru/'+id,
           method : 'PUT',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')

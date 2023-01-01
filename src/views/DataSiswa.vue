@@ -9,7 +9,10 @@
       ...mapWritableState(SiswaStore, ['data'])
     },
     methods : {
-      ...mapActions(SiswaStore, ['getAllDataSiswa', 'deleteSiswa'])
+      ...mapActions(SiswaStore, ['getAllDataSiswa', 'deleteSiswa']),
+      goToEdit(idSiswa){
+        this.$router.push({name :'EditDataSiswa', params : {idSiswa}})
+      }
     },
     components: {
       Navbar,
@@ -87,7 +90,7 @@
                       <td>{{ item.no_hp_ortu }}</td>
                       <td>
                         <button type="button" class="btn btn-primary btn-sm mr-2">Detail</button>
-                        <button type="button" class="btn btn-secondary btn-sm mr-2">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" @click="() => goToEdit(item.id)">Edit</button>
                         <button type="button" class="btn btn-danger btn-sm" @click="() => deleteSiswa(item.id)">Hapus</button>
                       </td>
                     </tr>
