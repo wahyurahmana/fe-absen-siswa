@@ -15,7 +15,8 @@ export const SiswaStore = defineStore('SiswaStore', {
       no_hp_siswa : "",
       no_hp_ortu : "",
       loading : false,
-      error : ""
+      error : "",
+      detailSiswa : {}
     }
   },
   actions: {
@@ -23,7 +24,7 @@ export const SiswaStore = defineStore('SiswaStore', {
       try {
         this.data = []
         const result = await axios({
-          url :'http://localhost:3000/siswa',
+          url :import.meta.env.VITE_BASE_URL+'siswa',
           method : 'GET',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -34,11 +35,25 @@ export const SiswaStore = defineStore('SiswaStore', {
         console.log(error);
       }
     },
+    async getDetailDataSiswa(id) {
+      try {
+        const {data} = await axios({
+          url :import.meta.env.VITE_BASE_URL+'siswa/'+id,
+          method : 'GET',
+          headers : {
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
+          }
+        })
+        this.detailSiswa = {...data}
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async addDataSiswa(){
       try {
         this.loading = true
         await axios({
-          url :'http://localhost:3000/siswa',
+          url :import.meta.env.VITE_BASE_URL+'siswa',
           method : 'POST',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -50,8 +65,8 @@ export const SiswaStore = defineStore('SiswaStore', {
             alamat : this.alamat,
             tempat_lahir : this.tempat_lahir,
             ttl : this.ttl,
-            no_hp_siswa : `62${this.no_hp_siswa}`,
-            no_hp_ortu : `62${this.no_hp_ortu}`
+            no_hp_siswa : this.no_hp_siswa,
+            no_hp_ortu : this.no_hp_ortu
           }
         })
         Swal.fire('Data Siswa Berhasil Ditambahkan!')
@@ -77,7 +92,7 @@ export const SiswaStore = defineStore('SiswaStore', {
         if (result.isConfirmed) {
           try {
             const result = await axios({
-              url :'http://localhost:3000/siswa/'+id,
+              url :import.meta.env.VITE_BASE_URL+'siswa/'+id,
               method : 'DELETE',
               headers : {
                 Authorization : 'Bearer '+localStorage.getItem('access_token')
@@ -95,11 +110,41 @@ export const SiswaStore = defineStore('SiswaStore', {
         }
       })
     },
+    async editDataSiswa(id){
+      try {
+        this.loading = true
+        await axios({
+          url :import.meta.env.VITE_BASE_URL+'siswa/'+id,
+          method : 'PUT',
+          headers : {
+            Authorization : 'Bearer '+localStorage.getItem('access_token')
+          },
+          data : {
+            nisn : this.detailSiswa.nisn,
+            nama_lengkap : this.detailSiswa.nama_lengkap,
+            jenis_kelamin : this.detailSiswa.jenis_kelamin,
+            alamat : this.detailSiswa.alamat,
+            tempat_lahir : this.detailSiswa.tempat_lahir,
+            ttl : this.detailSiswa.ttl,
+            no_hp_siswa : this.detailSiswa.no_hp_siswa,
+            no_hp_ortu : this.detailSiswa.no_hp_ortu
+          }
+        })
+        Swal.fire('Data Siswa Berhasil Diedit!')
+        this.loading = false
+        this.getAllDataSiswa()
+        this.router.push({name : 'DataSiswa'})
+      } catch (error) {
+        this.loading = false
+        this.error = error.response.data.message
+        console.log(error);
+      }
+    },
     async absensiSiswa(id_siswa, status){
       try {
         this.loading = true
         await axios({
-          url :'http://localhost:3000/siswa/absensi',
+          url :import.meta.env.VITE_BASE_URL+'siswa/absensi',
           method : 'POST',
           headers : {
             Authorization : 'Bearer '+localStorage.getItem('access_token')

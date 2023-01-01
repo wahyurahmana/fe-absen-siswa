@@ -6,7 +6,7 @@
   import Footer from "../components/Footer.vue";
   export default {
     computed: {
-      ...mapWritableState(GuruStore, ['username', 'nama_lengkap', 'alamat', 'loading','error', 'detailGuru'])
+      ...mapWritableState(GuruStore, ['loading','error', 'detailGuru'])
     },
     methods : {
       ...mapActions(GuruStore, ['getDetailGuru', 'editDataGuru']),
