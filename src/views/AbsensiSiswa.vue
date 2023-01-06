@@ -1,24 +1,32 @@
 <script>
-import { mapWritableState, mapActions } from 'pinia'
+import { mapWritableState, mapActions, mapState } from 'pinia'
 import { SiswaStore } from '../stores/SiswaStore.js'
+import { KelasStore } from '../stores/KelasStore.js'
 import Navbar from "../components/Navbar.vue";
 import ControlSidebar from "../components/ControlSidebar.vue";
 import Footer from "../components/Footer.vue";
 import "../assets/css/btnabsen.css";
 export default {
   computed: {
-    ...mapWritableState(SiswaStore, ['data'])
+    ...mapWritableState(KelasStore, ['idDataKelasOption']),
+    ...mapState(KelasStore, ['dataKelas', 'dataSiswaKelas'])
   },
   methods: {
-    ...mapActions(SiswaStore, ['getAllDataSiswa', 'absensiSiswa'])
+    ...mapActions(SiswaStore, ['absensiSiswa']),
+    ...mapActions(KelasStore, ['daftarKelas', 'getDataSiswaKelas'])
   },
   components: {
     Navbar,
     ControlSidebar,
     Footer,
   },
+  watch: {
+    idDataKelasOption() {
+      this.getDataSiswaKelas()
+    }
+  },
   mounted() {
-    this.getAllDataSiswa()
+    this.daftarKelas()
   }
 };
 </script>
@@ -49,19 +57,9 @@ export default {
                 <!--Header Tabel-->
                 <div class="row d-flex justify-content-center">
                   <div class="col">
-                    <select class="form-select" aria-label=".form-select example">
-                      <option selected>Pilih Jurusan</option>
-                      <option value="BKP">BKP</option>
-                      <option value="DPIB">DPIB</option>
-                      <option value="MMD">MMD</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    <select class="form-select" aria-label=".form-select example">
-                      <option selected>Pilih Kelas</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                    <select class="form-select" aria-label=".form-select example" v-model="idDataKelasOption">
+                      <option selected value="0" disabled>Pilih Jurusan</option>
+                      <option v-for="item in dataKelas" :value="item.id">{{ item.name }}</option>
                     </select>
                   </div>
                   <div class="col card-tools">
@@ -89,7 +87,7 @@ export default {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(item, i) in data" :key="i">
+                    <tr v-for="(item, i) in dataSiswaKelas" :key="i">
                       <td>{{ i + 1 }}</td>
                       <td>{{ item.nisn }}</td>
                       <td>{{ item.nama_lengkap }}</td>
