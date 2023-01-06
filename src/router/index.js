@@ -4,6 +4,7 @@ import {
 } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import AbsensiSiswa from "../views/AbsensiSiswa.vue";
+import AbsensiRekap from "../views/AbsensiRekap.vue";
 import DataGuru from "../views/DataGuru.vue";
 import DataSiswa from "../views/DataSiswa.vue";
 import Login from "../views/Login.vue";
@@ -55,6 +56,27 @@ const router = createRouter({
       path: "/absensi-siswa",
       name: "AbsensiSiswa",
       component: AbsensiSiswa,
+      beforeEnter: async (to, from, next) => {
+        try {
+          const authToken = await checkToken()
+          if (authToken.username) {
+            next()
+          } else {
+            next({
+              name: 'Login'
+            })
+          }
+        } catch (error) {
+          next({
+            name: 'Login'
+          })
+        }
+      }
+    },
+    {
+      path: "/rekap-absen",
+      name: "AbsensiRekap",
+      component: AbsensiRekap,
       beforeEnter: async (to, from, next) => {
         try {
           const authToken = await checkToken()

@@ -1,16 +1,23 @@
 <script>
-import { mapWritableState, mapActions } from 'pinia'
-import { SiswaStore } from '../stores/SiswaStore.js'
+import { mapWritableState, mapActions } from "pinia";
+import { SiswaStore } from "../stores/SiswaStore.js";
 import Navbar from "../components/Navbar.vue";
 import ControlSidebar from "../components/ControlSidebar.vue";
 import Footer from "../components/Footer.vue";
-import "../assets/css/btnabsen.css";
 export default {
   computed: {
-    ...mapWritableState(SiswaStore, ['data'])
+    ...mapWritableState(SiswaStore, ["data"]),
   },
   methods: {
-    ...mapActions(SiswaStore, ['getAllDataSiswa', 'absensiSiswa'])
+    ...mapActions(SiswaStore, ["getAllDataSiswa", "deleteSiswa"]),
+    goToEdit(idSiswa) {
+      this.$router.push({
+        name: "EditDataSiswa",
+        params: {
+          idSiswa,
+        },
+      });
+    },
   },
   components: {
     Navbar,
@@ -18,8 +25,8 @@ export default {
     Footer,
   },
   mounted() {
-    this.getAllDataSiswa()
-  }
+    this.getAllDataSiswa();
+  },
 };
 </script>
 
@@ -32,7 +39,7 @@ export default {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Absensi Siswa</h1>
+            <h1>Rekap Absen</h1>
           </div>
         </div>
       </div>
@@ -64,6 +71,10 @@ export default {
                       <option value="3">3</option>
                     </select>
                   </div>
+                  <div class="col">
+                    <span><input type="date" class="form-control" id="tanggalabsen" placeholder="dd-mm-yyyy"/></span>
+                  </div>
+<!-- 
                   <div class="col card-tools">
                     <div class="input-group input-group" style="width: auto">
                       <input type="text" name="table_search" class="form-control float-right" placeholder="Search" />
@@ -73,49 +84,41 @@ export default {
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!--END Header Tabel-->
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap justify-content-center">
+                <table class="table w-auto small tbl-font table-bordered text-nowrap">
                   <thead>
                     <tr>
-                      <th>NO</th>
-                      <th>NISN</th>
-                      <th>Nama</th>
-                      <th>Status</th>
+                      <th class="align-middle" rowspan="2">No</th>
+                      <th class="align-middle" rowspan="2">NISN</th>
+                      <th class="align-middle" rowspan="2">Nama Lengkap</th>
+                      <th class="text-center" colspan="31">Tanggal</th>
+                      <th class="text-center" colspan="6">Jumlah</th>
+                    </tr>
+                    <tr>
+                      <!--looping tanggal-->
+                      <th class="align-middle" v-for="(n, index) in 31">
+                        {{ n }}
+                      </th>
+                      <!--end looping tanggal-->
+                      <th class="align-middle">H</th>
+                      <th class="align-middle">S</th>
+                      <th class="align-middle">I</th>
+                      <th class="align-middle">A</th>
+                      <th class="align-middle">T</th>
+                      <th class="align-middle">B</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(item, i) in data" :key="i">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ item.nisn }}</td>
-                      <td>{{ item.nama_lengkap }}</td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="button-hadir" role="button" @click="() => absensiSiswa(item.id, 'hadir')">
-                            Hadir
-                          </button>
-                          <button class="button-ijin" role="button" @click="() => absensiSiswa(item.id, 'ijin')">
-                            Ijin
-                          </button>
-                          <button class="button-sakit" role="button" @click="() => absensiSiswa(item.id, 'sakit')">
-                            Sakit
-                          </button>
-                          <button class="button-alpa" role="button" @click="() => absensiSiswa(item.id, 'alpa')">
-                            Alpa
-                          </button>
-                          <button class="button-bolos" role="button" @click="() => absensiSiswa(item.id, 'bolos')">
-                            Bolos
-                          </button>
-                          <button class="button-telat" role="button" @click="() => absensiSiswa(item.id, 'telat')">
-                            Telat
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                    <!-- <tr>
+                      <td>1</td>
+                      <td>2227138</td>
+                      <td>A RIAN RANA PRATAMA</td>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -133,3 +136,12 @@ export default {
   <ControlSidebar />
   <Footer />
 </template>
+
+<style>
+.tbl-font{
+  font-size: 11px;
+}
+.input-group-append {
+  cursor: pointer;
+}
+</style>

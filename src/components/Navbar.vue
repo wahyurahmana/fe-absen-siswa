@@ -66,14 +66,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="@/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">User</a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -117,15 +117,32 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <router-link to="/absensi-siswa">
-              <a class="nav-link">
-                <i class="nav-icon fa fa-book"></i>
-                <p>
-                  Absensi Siswa
-                </p>
-              </a>
-            </router-link>
+          <li class="nav-item menu-open">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-folder-open"></i>
+              <p>
+                Absen
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/absensi-siswa">
+                  <a class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Absensi Siswa</p>
+                  </a>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/rekap-absen">
+                  <a class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Rekap Absen</p>
+                  </a>
+                </router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
